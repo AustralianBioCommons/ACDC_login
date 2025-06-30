@@ -1,0 +1,22 @@
+@startuml
+
+|Gen3| Gen3
+start
+
+note
+  User is in Explorer
+endnote
+
+:click login;
+|Auth0| Auth0
+if (new user) then (yes)
+    :Sign Up;
+else (no)
+    :Log In;
+endif
+:redirect to\noriginal page;
+
+|Gen3|
+stop
+
+@enduml
