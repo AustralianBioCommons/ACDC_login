@@ -9,11 +9,26 @@ endnote
 
 :click login;
 |Auth0| Auth0
-if (new user) then (yes)
-    :Sign Up;
-else (no)
-    :Log In;
-endif
+while (new user)
+  :Register
+    **name**
+    **email**;
+  group "optional" {
+    if (email in\nallowlist)
+    else (no)
+      stop
+    endif
+  }
+  :Verify email;
+  if (email\nverified)
+  else (no)
+    stop
+  endif
+endwhile
+while (forgot password)
+  :Reset Password;
+endwhile
+:Log in;
 :redirect to\noriginal page;
 
 |Gen3|
